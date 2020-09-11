@@ -1,5 +1,5 @@
-class IntLinkedList {
-    private var head: IntNode? = null
+class KotlinIntLinkedList {
+    private var head: KotlinIntNode? = null
 
     // Returns the total number of nodes in the Linked List
     fun countNodes() =
@@ -17,18 +17,18 @@ class IntLinkedList {
 
     // Inserts a new node at the front of the LinkedList (prepend)
     fun insertFirst(data: Int) {
-        val newNode = IntNode(data)
+        val newNode = KotlinIntNode(data)
         newNode.next = head
         head = newNode
     }
 
     // Inserts a new node at the back of the LinkedList (append)
     fun insertLast(data: Int) {
-        val newNode = IntNode(data)
+        val newNode = KotlinIntNode(data)
         if (head == null) {
             head = newNode
         } else {
-            var current: IntNode = head!!
+            var current: KotlinIntNode = head!!
             while (current.next != null) {
                 current = current.next!!
             }
@@ -114,7 +114,7 @@ class IntLinkedList {
             // Test 1: insertFirst method
             // We are going to make a list containing 4 -> 2 -> 3 -> null
             println("Test 1:")
-            val list1 = IntLinkedList()
+            val list1 = KotlinIntLinkedList()
             list1.insertFirst(3)
             list1.insertFirst(2)
             list1.insertFirst(4)
@@ -123,7 +123,7 @@ class IntLinkedList {
             // Test 2: insertLast method
             // We are going to make a list containing 7 -> 2 -> 5 -> 10 -> null
             println("\nTest 2:")
-            val list2 = IntLinkedList()
+            val list2 = KotlinIntLinkedList()
             list2.insertLast(7)
             list2.insertLast(2)
             list2.insertLast(5)
@@ -160,7 +160,7 @@ class IntLinkedList {
 
             // Test 6: removeAll method
             println("\nTest 6:")
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(1)
                 insertLast(2)
                 insertLast(6)
@@ -172,7 +172,7 @@ class IntLinkedList {
                 removeAll(6)
                 println(this) // 1 -> 2 -> 3 -> 4 -> 5 -> null
             }
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(6)
                 insertLast(5)
                 insertLast(3)
@@ -184,7 +184,7 @@ class IntLinkedList {
                 removeAll(6)
                 println(this) // 5 -> 3 -> 1 -> 2 -> 0 -> null
             }
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(6)
                 insertLast(6)
                 insertLast(6)
@@ -196,7 +196,7 @@ class IntLinkedList {
 
 // Test 7: reverse
             println("\nTest 7:")
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(3)
                 insertLast(2)
                 insertLast(4)
@@ -206,14 +206,14 @@ class IntLinkedList {
 
 // Test8: hasCycle
             println("\nTest 8:")
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(3)
                 insertLast(2)
                 insertLast(4)
                 head!!.next!!.next!!.next = head
                 println(hasCycle()) // true
             }
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(3)
                 insertLast(2)
                 insertLast(4)
@@ -221,7 +221,7 @@ class IntLinkedList {
                 head!!.next!!.next!!.next!!.next = head!!.next
                 println(hasCycle()) // true
             }
-            IntLinkedList().apply {
+            KotlinIntLinkedList().apply {
                 insertLast(3)
                 insertLast(2)
                 insertLast(4)
