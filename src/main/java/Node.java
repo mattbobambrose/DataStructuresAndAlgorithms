@@ -17,18 +17,15 @@ public class Node<T> {
         // Code to make the first example list: 4 -> 2 -> null
         // Make the nodes
         IntNode head1 = new IntNode(4);
-        IntNode A = new IntNode(2);
         // Make the connections
-        head1.next = A;
+        head1.next = new IntNode(2);
 
         // Code to make the second example list: 3 -> 10 -> 2 -> null
         // Make the nodes
         IntNode head2 = new IntNode(3);
-        IntNode X = new IntNode(10);
-        IntNode Y = new IntNode(2);
-        // Make the connections
-        head2.next = X;
-        X.next = Y;
+        IntNode x = new IntNode(10);
+        head2.next = x;
+        x.next = new IntNode(2);
 
         // Test the countNodes function
         System.out.println(countNodes(head1)); // 2

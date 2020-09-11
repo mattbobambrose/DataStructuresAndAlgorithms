@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class IntLinkedList {
+public class IntLinkedList implements Stack {
     private IntNode head;
 
     public IntLinkedList() {
@@ -9,6 +9,25 @@ public class IntLinkedList {
     }
 
     public static void main(String[] args) {
+        //Stack tests
+        Stack stack = new IntLinkedList();
+        stack.push(10);
+        stack.push(5);
+        stack.push(2);
+        stack.push(7);
+
+        System.out.println(stack.peek()); // 7
+
+        while (!stack.isEmpty()) {
+            System.out.println(stack.pop());
+        }
+// 7
+// 2
+// 5
+// 10
+
+        //Regular IntLinkedList tests
+
         // Test 1: insertFirst method
         // We are going to make a list containing 4 -> 2 -> 3 -> null
         System.out.println("Test 1:");
@@ -127,6 +146,34 @@ public class IntLinkedList {
         System.out.println(list5.hasCycle()); // false*/
     }
 
+    //Stack Stuff
+
+    @Override
+    public void push(int data) {
+        insertLast(data);
+    }
+
+    @Override
+    public int pop() {
+        return removeLast();
+    }
+
+    @Override
+    public int peek() {
+        IntNode current = head;
+        while (current != null && current.next != null) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    //Regular IntLinkedList Stuff
+
     // Returns the total number of nodes in the Linked List
     public int countNodes() {
         if (head == null) {
@@ -195,7 +242,10 @@ public class IntLinkedList {
             insertLast(current.data);
             current = current.next;
         }
-        return current.data;
+        if (current == null)
+            return -1;
+        else
+            return current.data;
     }
 
     public void removeAll(int val) {
@@ -227,7 +277,7 @@ public class IntLinkedList {
 
     public boolean hasCycle() {
         IntNode current = head;
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         while (current != null && current.next != null) {
             if (result.contains(current.data)) {
                 return true;
@@ -240,13 +290,13 @@ public class IntLinkedList {
 
     // toString function that is called when LinkedList is printed
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         IntNode current = head;
         while (current != null) {
-            str = str + current.data + " -> ";
+            str.append(current.data).append(" -> ");
             current = current.next;
         }
-        str += "null";
-        return str;
+        str.append("null");
+        return str.toString();
     }
 }

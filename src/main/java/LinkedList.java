@@ -9,7 +9,7 @@ public class LinkedList<T> {
     }
 
     public static void main(String[] args) {
-        LinkedList<String> stringList = new LinkedList<String>();
+        LinkedList<String> stringList = new LinkedList<>();
         stringList.insertFirst("Apple");
         stringList.insertFirst("Orange");
         stringList.insertLast("Banana");
@@ -22,7 +22,7 @@ public class LinkedList<T> {
         System.out.println(stringList.removeLast()); // "Banana"
         System.out.println(stringList); // "Apple" -> null
 
-        LinkedList<Double> doubleList = new LinkedList<Double>();
+        LinkedList<Double> doubleList = new LinkedList<>();
         doubleList.insertFirst(2.2);
         doubleList.insertFirst(1.1);
         doubleList.insertLast(3.3);
@@ -52,13 +52,13 @@ public class LinkedList<T> {
     }
 
     public void insertFirst(T data) {
-        Node<T> newNode = new Node(data);
+        Node<T> newNode = new Node<>(data);
         newNode.next = head;
         head = newNode;
     }
 
     public void insertLast(T data) {
-        Node<T> newNode = new Node(data);
+        Node<T> newNode = new Node<>(data);
         if (head == null) {
             head = newNode;
         } else {
@@ -98,7 +98,10 @@ public class LinkedList<T> {
             insertLast(current.data);
             current = current.next;
         }
-        return current.data;
+        if (current == null)
+            return null;
+        else
+            return current.data;
     }
 
     public void removeAll(T val) {
@@ -130,7 +133,7 @@ public class LinkedList<T> {
 
     public boolean hasCycle() {
         Node<T> current = head;
-        List<T> result = new ArrayList<T>();
+        List<T> result = new ArrayList<>();
         while (current != null && current.next != null) {
             if (result.contains(current.data)) {
                 return true;
@@ -142,13 +145,13 @@ public class LinkedList<T> {
     }
 
     public String toString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         Node<T> current = head;
         while (current != null) {
-            str = str + current.data + " -> ";
+            str.append(current.data).append(" -> ");
             current = current.next;
         }
-        str += "null";
-        return str;
+        str.append("null");
+        return str.toString();
     }
 }
