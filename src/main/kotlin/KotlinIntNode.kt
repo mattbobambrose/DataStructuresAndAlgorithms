@@ -5,7 +5,7 @@ class KotlinIntNode(var data: Int) {
         private fun countNodes(head: KotlinIntNode?): Int =
                 if (head!!.next == null) 1 else (1 + countNodes(head.next))
 
-        fun main(args: Array<String?>?) {
+        fun main() {
             // Code to make the first example list: 4 -> 2 -> null
             // Make the nodes
             val head1 = KotlinIntNode(4)

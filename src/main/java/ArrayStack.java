@@ -1,14 +1,21 @@
 public class ArrayStack implements Stack {
-    public int[] iar;
-    public boolean[] bar;
+    private int[] stack;
+    private int head;
+    private int capacity;
 
-    public ArrayStack(int size) {
-        iar = new int[size];
-        bar = new boolean[size];
+    public ArrayStack(int capacity) {
+        this.capacity = capacity;
+        this.stack = new int[capacity];
+        this.head = -1;
+    }
+
+    // The default size of our array will be 100
+    public ArrayStack() {
+        this(100);
     }
 
     public static void main(String[] args) {
-        Stack stack = new ArrayStack(4);
+        Stack stack = new ArrayStack();
         stack.push(10);
         stack.push(5);
         stack.push(2);
@@ -25,52 +32,36 @@ public class ArrayStack implements Stack {
         // 10
     }
 
-    @Override
+    // Pushes some data value to the top of the Stack
     public void push(int data) {
-        for (int i = 0; i < bar.length; i++) {
-            if (bar[i] == false) {
-                iar[i] = data;
-                bar[i] = true;
+        head++;
+
+        // Check to see if we need to add more space in our array
+        if (head == capacity) {
+            capacity *= 2;
+            int[] newArr = new int[capacity];
+            for (int i = 0; i < stack.length; i++) {
+                newArr[i] = stack[i];
             }
+            stack = newArr;
         }
+
+        stack[head] = data;
     }
 
-    @Override
+    // Pops some data value off the top of the Stack
     public int pop() {
-        if (bar[0] == false) {
-            return 0;
-        }
-        for (int i = 0; i < bar.length; i++) {
-            if (bar[i] == false) {
-                int d = iar[i - 1];
-                iar[i - 1] = 0;
-                bar[i - 1] = false;
-                return d;
-            }
-        }
-        if (bar[bar.length - 1] == true) {
-            int v = iar[iar.length - 1];
-            iar[iar.length - 1] = 0;
-            bar[bar.length - 1] = false;
-            return v;
-        }
+        head--;
+        return stack[head + 1];
     }
 
-    @Override
+    // Returns the data value at the top of the stack without popping
     public int peek() {
-        if (bar[0] == false) {
-            return 0;
-        }
-        for (int i = 0; i < bar.length; i++) {
-            if (bar[i] == false) {
-                return iar[i - 1];
-            }
-        }
-        return iar[iar.length - 1];
+        return stack[head];
     }
 
-    @Override
+    // Checks whether or not the stack is empty
     public boolean isEmpty() {
-        return bar[0] == false;
+        return (head == -1);
     }
 }
